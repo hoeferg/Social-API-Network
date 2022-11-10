@@ -1,7 +1,7 @@
-
+const {Schema, model  } = require('mongoose');
 
 // Schema to create User model
-const User = new Schema(
+const userSchema = new Schema(
   {
     username:
     {
