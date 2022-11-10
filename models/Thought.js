@@ -4,7 +4,7 @@ const { Schema, model } = require('mongoose');
 const userSchema = new Schema(
   {
     thoughtText: {
-      type: string,
+      type: String,
       required: true,
       minlength: 1,
       maxlength: 280,
@@ -28,6 +28,7 @@ const userSchema = new Schema(
 );
 
 
-const Thought = model('Thought', thoughtSchema);
 
-module.exports = thoughtSchema;
+// const Thought = model('Thought', userSchema);
+
+module.exports = Thought;

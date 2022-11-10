@@ -5,7 +5,7 @@ const userSchema = new Schema(
   {
     username:
     {
-      type: string,
+      type: String,
       unique: 'true',
       required: true,
       trim: true,
@@ -40,7 +40,7 @@ const userSchema = new Schema(
   }
 );
 
-// Create a virtual property `fullName` that gets and sets the user's full name
+
 userSchema.virtual("friend").get(function () {
   return this.friends.length;
 })
