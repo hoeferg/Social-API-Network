@@ -1,7 +1,7 @@
-const { Thought, User } = require('mongoose');
+
 
 // Schema to create User model
-const user = new Schema(
+const User = new Schema(
   {
     username:
     {
