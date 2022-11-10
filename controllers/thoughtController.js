@@ -77,7 +77,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Adds a tag to an application. This method is unique in that we add the entire body of the tag rather than the ID with the mongodb $addToSet operator.
-  addTag(req, res) {
+  addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $addToSet: { tags: req.body } },
@@ -91,7 +91,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Remove application tag. This method finds the application based on ID. It then updates the tags array associated with the app in question by removing it's tagId from the tags array.
-  removeTag(req, res) {
+  removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $pull: { tags: { tagId: req.params.tagId } } },
