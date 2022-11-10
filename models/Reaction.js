@@ -30,7 +30,7 @@ const userSchema = new Schema(
     },
 );
 
-// Create a virtual property `fullName` that gets and sets the user's full name
+
 const Reaction = model('Reaction', reactionSchema)
 
 module.exports = reactionSchema;

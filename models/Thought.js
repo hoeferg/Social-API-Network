@@ -27,7 +27,6 @@ const userSchema = new Schema(
   },
 );
 
-// Create a virtual property `fullName` that gets and sets the user's full name
 
 const Thought = model('Thought', thoughtSchema);
 
