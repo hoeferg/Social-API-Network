@@ -26,10 +26,10 @@ module.exports = {
   },
   updateUser(req, res) {
     User.findOneAndUpdate(
-      {_id: req.params.userId},
+      { _id: req.params.userId },
       { $set: req.body },
       { runValidators: true, new: true }
-      )
+    )
       .then((user) => res.json(user))
       .catch((err) => res.status(500).json(err));
   },
@@ -44,4 +44,24 @@ module.exports = {
       .then(() => res.json({ message: 'User and associated apps deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
+  addFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.params.friendId } },
+      { new: true }
+    )
+      .then((user) => res.json(user))
+      .catch((err) => res.status(500).json(err));
+  },
+  removeFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.params.friendId } },
+      { new: true }
+    )
+      .then((user) => res.json(user))
+      .catch((err) => res.status(500).json(err));
+  }
 };
+
+module.exports = userController;
