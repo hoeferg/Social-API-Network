@@ -1,24 +1,24 @@
 const { Application, User } = require('../models');
 
 module.exports = {
-  getApplications(req, res) {
-    Application.find()
-      .then((applications) => res.json(applications))
+  getThought(req, res) {
+    Thought.find()
+      .then((thought) => res.json(thought))
       .catch((err) => res.status(500).json(err));
   },
-  getSingleApplication(req, res) {
-    Application.findOne({ _id: req.params.applicationId })
-      .then((application) =>
-        !application
+  getSingleThought(req, res) {
+    Thought.findOne({ _id: req.params.thoughtId })
+      .then((thought) =>
+        !thought
           ? res.status(404).json({ message: 'No application with that ID' })
-          : res.json(application)
+          : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },
-  // TODO: Add comments to the functionality of the createApplication method
-  createApplication(req, res) {
-    Application.create(req.body)
-      .then((application) => {
+  
+  createThought(req, res) {
+    Thought.create(req.body)
+      .then((thought) => {
         return User.findOneAndUpdate(
           { _id: req.body.userId },
           { $addToSet: { applications: application._id } },
@@ -37,15 +37,15 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  // TODO: Add comments to the functionality of the updateApplication method
-  updateApplication(req, res) {
-    Application.findOneAndUpdate(
-      { _id: req.params.applicationId },
+  // Updates and application using the findOneAndUpdate method. Uses the ID, and the $set operator in mongodb to inject the request body. Enforces validation.
+  updateThought(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
       { $set: req.body },
       { runValidators: true, new: true }
     )
-      .then((application) =>
-        !application
+      .then((thought) =>
+        !thought
           ? res.status(404).json({ message: 'No application with this id!' })
           : res.json(application)
       )
@@ -54,11 +54,12 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  // TODO: Add comments to the functionality of the deleteApplication method
-  deleteApplication(req, res) {
-    Application.findOneAndRemove({ _id: req.params.applicationId })
-      .then((application) =>
-        !application
+  // Deletes an application from the database. Looks for an app by ID.
+  // Then if the app exists, we look for any users associated with the app based on he app ID and update the applications array for the User.
+  deleteThought(req, res) {
+    Thought.findOneAndRemove({ _id: req.params.applicationId })
+      .then((thought) =>
+        !thought
           ? res.status(404).json({ message: 'No application with this id!' })
           : User.findOneAndUpdate(
               { applications: req.params.applicationId },
@@ -75,31 +76,31 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // TODO: Add comments to the functionality of the addTag method
+  // Adds a tag to an application. This method is unique in that we add the entire body of the tag rather than the ID with the mongodb $addToSet operator.
   addTag(req, res) {
-    Application.findOneAndUpdate(
-      { _id: req.params.applicationId },
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
       { $addToSet: { tags: req.body } },
       { runValidators: true, new: true }
     )
-      .then((application) =>
-        !application
+      .then((thought) =>
+        !thought
           ? res.status(404).json({ message: 'No application with this id!' })
           : res.json(application)
       )
       .catch((err) => res.status(500).json(err));
   },
-  // TODO: Add comments to the functionality of the addTag method
+  // Remove application tag. This method finds the application based on ID. It then updates the tags array associated with the app in question by removing it's tagId from the tags array.
   removeTag(req, res) {
-    Application.findOneAndUpdate(
-      { _id: req.params.applicationId },
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
       { $pull: { tags: { tagId: req.params.tagId } } },
       { runValidators: true, new: true }
     )
-      .then((application) =>
-        !application
+      .then((thought) =>
+        !thought
           ? res.status(404).json({ message: 'No application with this id!' })
-          : res.json(application)
+          : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },
