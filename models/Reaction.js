@@ -1,7 +1,7 @@
 const { Schema, Types } = require('mongoose');
 const dateFormat = require('../utils/dataFormat')
 // Schema to create User model
-const userSchema = new Schema(
+const ReactionSchema = new Schema(
     {
         reactionId: {
             type: Schema.Types.ObjectId,

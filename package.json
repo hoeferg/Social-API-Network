@@ -1,19 +1,24 @@
 {
-  "name": "26-Stu_Mongoose-CRUD",
+  "name": "socail-api-network",
   "version": "1.0.0",
-  "description": "Reverse engineer developer activity for CRUD methods in Mongoose",
+  "description": "This is an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. Users can interact with each other by creating post and adding friends. Those friends can then display reactions to the user's post.",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index",
-    "seed": "node utils/seed"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoeferg/Socail-API-Network.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hoeferg/Socail-API-Network/issues"
+  },
+  "homepage": "https://github.com/hoeferg/Socail-API-Network#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^6.0.13"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.9"
+    "express": "^4.18.2",
+    "mongoose": "^6.7.2"
   }
 }
