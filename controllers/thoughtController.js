@@ -49,7 +49,7 @@ const thoughtController = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No application with this id!' })
-          : res.json(application)
+          : res.json(thought)
       )
       .catch((err) => {
         console.log(err);
@@ -59,13 +59,13 @@ const thoughtController = {
   // Deletes an application from the database. Looks for an app by ID.
   // Then if the app exists, we look for any users associated with the app based on he app ID and update the applications array for the User.
   deleteThought(req, res) {
-    Thought.findOneAndRemove({ _id: req.params.applicationId })
+    Thought.findOneAndRemove({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No application with this id!' })
           : User.findOneAndUpdate(
-              { applications: req.params.applicationId },
-              { $pull: { applications: req.params.applicationId } },
+              { thoughts: req.params.thoughtId },
+              { $pull: { thoughts: req.params.thoughtId } },
               { new: true }
             )
       )
@@ -88,7 +88,7 @@ const thoughtController = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No application with this id!' })
-          : res.json(application)
+          : res.json(thoughts)
       )
       .catch((err) => res.status(500).json(err));
   },
