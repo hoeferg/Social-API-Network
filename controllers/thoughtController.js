@@ -23,14 +23,14 @@ const thoughtController = {
       .then((thought) => {
         return User.findOneAndUpdate(
           { _id: req.body.userId },
-          { $addToSet: { applications: application._id } },
+          { $addToSet: { thoughts: thought._id } },
           { new: true }
         );
       })
       .then((user) =>
         !user
           ? res.status(404).json({
-              message: 'Application created, but found no user with that ID',
+              message: 'Thought created, but found no user with that ID',
             })
           : res.json('Created the application 🎉')
       )
