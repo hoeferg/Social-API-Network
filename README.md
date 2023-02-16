@@ -1,5 +1,7 @@
 # Social Network API
 
+<img src="socail api.png" />
+
 ## Description
 
 This is an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. Users can interact with each other by creating post and adding friends. Those friends can then display reactions to the user's post.
